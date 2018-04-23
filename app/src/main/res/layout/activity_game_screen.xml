@@ -4,21 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/hill"
     tools:context="net.androidbootcamp.applesandoranges.GameScreen">
 
     <ImageView
-        android:id="@+id/imgBackground"
-        android:layout_width="1279dp"
-        android:layout_height="715dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="4dp"
-        android:contentDescription="@string/imgBackground"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:id="@+id/imageView2"
+        android:layout_width="206dp"
+        android:layout_height="188dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="248dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/hill"
-        android:layout_marginRight="8dp" />
+        app:srcCompat="@drawable/appletree" />
 
     <TextView
         android:id="@+id/txtPlayerName"
@@ -34,6 +31,7 @@
         android:id="@+id/txtWallet"
         android:layout_width="639dp"
         android:layout_height="60dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         android:background="@android:color/background_light"
@@ -41,7 +39,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/txtPlayerName"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="8dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
