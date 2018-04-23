@@ -17,7 +17,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/hill" />
+        app:srcCompat="@drawable/hill"
+        android:layout_marginRight="8dp" />
 
     <TextView
         android:id="@+id/txtPlayerName"
@@ -40,6 +41,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/txtPlayerName"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="8dp" />
 
 </android.support.constraint.ConstraintLayout>
