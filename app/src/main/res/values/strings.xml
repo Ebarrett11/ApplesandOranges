@@ -3,4 +3,5 @@
     <string name="btnName">Go!</string>
     <string name="txtPlayerName">What\'s Your Name?</string>
     <string name="hintName">Enter Your Name</string>
+    <string name="imgBackground">Hill Image</string>
 </resources>
