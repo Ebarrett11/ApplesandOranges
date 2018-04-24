@@ -5,4 +5,5 @@
     <string name="hintName">Enter Your Name</string>
     <string name="imgBackground">Hill Image</string>
     <string name="imgSplash">Apple and Orange Image</string>
+    <string name="imgFruit">Fruit Image</string>
 </resources>
