@@ -1,22 +1,20 @@
 package net.androidbootcamp.applesandoranges;
 
-import android.content.Context;
-import android.content.Intent;
+import android.annotation.SuppressLint;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class GameScreen extends AppCompatActivity {
-    int wallet; //remember we have to pull this from storage
-    int appleTotal = 0, orangeTotal = 0, treeTotal = 0;    //total number of fruit - but is tree necessary?
+    int wallet;
+    boolean play = true;
+    int appleTotal = 0, orangeTotal = 0, aTreeTotal = 1, oTreeTotal = 0;
+    TextView txtApple, txtOrange;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +24,8 @@ public class GameScreen extends AppCompatActivity {
         //creating elements
         TextView txtPlayerName = (TextView) findViewById(R.id.txtPlayerName);
         TextView txtWallet = (TextView) findViewById(R.id.txtWallet);
+        txtApple = (TextView) findViewById(R.id.txtApple);
+        txtOrange = (TextView) findViewById(R.id.txtOrange);
 
         //player name file
         try {
@@ -41,40 +41,38 @@ public class GameScreen extends AppCompatActivity {
         }
 
         //wallet file
-        try {
-            String FILENAME = "fileWallet";
-            String wallet = txtPlayerName.getText().toString();
-            FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
-            fos.write(wallet.getBytes());
-            fos.close();
 
-        } catch (IOException e) {
-            Log.e("ERROR", e.toString());
-        }
+        //apple number file
+
+        //apple tree number file
+
+        //orange number file
+
+        //orange tree number file
 
         //setting elements
-        txtWallet.setText(appleTotal);
-        appleTimer();
-        txtWallet.setText(appleTotal);
-
-        //timer for apples
-
-        //timer for oranges
 
         //go to shop
+        //startactivty here once we have the shop page but that's it
 
-    }
+        //actual game timer stuff
+        final Handler handler = new Handler();
+        final int delay = 10000; //milliseconds
 
-    int appleTimer(){
-        TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-                finish();
-                appleTotal = appleTotal + 1;
+        handler.postDelayed(new Runnable(){
+            @SuppressLint("SetTextI18n")
+            public void run(){
+                //do something
+                appleTotal = appleTotal + (aTreeTotal);
+                orangeTotal = orangeTotal + (oTreeTotal);
+
+                txtApple.setText(appleTotal + " apples");
+                txtOrange.setText(orangeTotal + " oranges");
+
+                handler.postDelayed(this, delay);
             }
-        };
-        Timer opening = new Timer();
-        opening.schedule(task, 10000);
-        return appleTotal;
+        }, delay);
+
     }
+
 }
