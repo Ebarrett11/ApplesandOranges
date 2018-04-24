@@ -7,16 +7,6 @@
     android:background="@drawable/hill"
     tools:context="net.androidbootcamp.applesandoranges.GameScreen">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="206dp"
-        android:layout_height="188dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="248dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/appletree" />
-
     <TextView
         android:id="@+id/txtPlayerName"
         android:layout_width="639dp"
@@ -40,5 +30,27 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/txtPlayerName"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtApple"
+        android:layout_width="297dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:textAlignment="textEnd"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/txtOrange"
+        android:layout_width="299dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:textAlignment="textEnd"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/txtApple"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
