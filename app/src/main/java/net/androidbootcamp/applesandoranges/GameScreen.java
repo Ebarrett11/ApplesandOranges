@@ -2,12 +2,18 @@ package net.androidbootcamp.applesandoranges;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.FileInputStream;
@@ -39,6 +45,28 @@ public class GameScreen extends AppCompatActivity {
         TextView txtWallet = (TextView) findViewById(R.id.txtWallet);
         txtApple = (TextView) findViewById(R.id.txtApple);
         txtOrange = (TextView) findViewById(R.id.txtOrange);
+        ImageButton btnShop = (ImageButton) findViewById(R.id.btnShop);
+
+        //trees
+        ImageView treeOne = (ImageView) findViewById(R.id.imgTree1);
+        ImageView treeTwo = (ImageView) findViewById(R.id.imgTree2);
+        ImageView treeThree = (ImageView) findViewById(R.id.imgTree3);
+        ImageView treeFour = (ImageView) findViewById(R.id.imgTree4);
+        ImageView treeFive = (ImageView) findViewById(R.id.imgTree5);
+        ImageView treeSix = (ImageView) findViewById(R.id.imgTree6);
+        ImageView treeSeven = (ImageView) findViewById(R.id.imgTree7);
+        ImageView treeEight = (ImageView) findViewById(R.id.imgTree8);
+        ImageView treeNine = (ImageView) findViewById(R.id.imgTree9);
+        ImageView treeTen = (ImageView) findViewById(R.id.imgTree10);
+        ImageView treeEleven = (ImageView) findViewById(R.id.imgTree11);
+        ImageView treeTwelve = (ImageView) findViewById(R.id.imgTree12);
+        ImageView treeThirteen = (ImageView) findViewById(R.id.imgTree13);
+        ImageView treeFourteen = (ImageView) findViewById(R.id.imgTree14);
+        ImageView treeFifteen = (ImageView) findViewById(R.id.imgTree15);
+        ImageView treeSixteen = (ImageView) findViewById(R.id.imgTree16);
+
+        //first tree image
+        treeOne.setImageResource(R.drawable.appletree);
 
         //player name file
         try {
@@ -53,15 +81,18 @@ public class GameScreen extends AppCompatActivity {
             Log.e("ERROR", e.toString());
         }
 
-        //wallet file
-
-        //get fruit data
-
         //setting elements
         txtApple.setText(appleTotal + " apples");
+        txtOrange.setText(orangeTotal + " oranges");
+        txtWallet.setText(wallet);
 
         //go to shop
-        //startactivty here once we have the shop page but that's it
+        btnShop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(GameScreen.this, ShopScreen.class));
+            }
+        });
 
         //actual game timer stuff
         //apple timer
