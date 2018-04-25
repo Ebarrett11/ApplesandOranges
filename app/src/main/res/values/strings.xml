@@ -6,4 +6,7 @@
     <string name="imgBackground">Hill Image</string>
     <string name="imgSplash">Apple and Orange Image</string>
     <string name="imgFruit">Fruit Image</string>
+    <string name="imgHole">Hole Image</string>
+    <string name="imgTree">Tree Image</string>
+    <string name="imgShop">Shop Image</string>
 </resources>
