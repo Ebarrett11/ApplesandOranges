@@ -12,8 +12,6 @@
     <string name="sellOrange">Orange</string>
     <string name="sellApple">Apple</string>
     <string name="txtSellFruit">Select the fruit you want to sell</string>
-    <string name="txtbuyApple">Buy One Apple</string>
-    <string name="txtBuyOrange">Buy One Orange</string>
     <string name="btnSellApple">Sell Apple</string>
     <string name="btnSellOrange">Sell Orange</string>
     <string name="txtOr">OR</string>
