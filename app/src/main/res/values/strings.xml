@@ -9,4 +9,20 @@
     <string name="imgHole">Hole Image</string>
     <string name="imgTree">Tree Image</string>
     <string name="imgShop">Shop Image</string>
+    <string name="sellOrange">Orange</string>
+    <string name="sellApple">Apple</string>
+    <string name="txtSellFruit">Select the fruit you want to sell</string>
+    <string name="txtbuyApple">Buy One Apple</string>
+    <string name="txtBuyOrange">Buy One Orange</string>
+    <string name="btnSellApple">Sell Apple</string>
+    <string name="btnSellOrange">Sell Orange</string>
+    <string name="txtOr">OR</string>
+    <string name="hintSell">How many?</string>
+    <string name="txtBuyFruit">Select the fruit you want to buy</string>
+    <string name="btnBuyApple">Buy Apple</string>
+    <string name="btnBuyOrange">Buy Orange</string>
+    <string name="imgApple">Apple Image</string>
+    <string name="imgOrange">Orange Image</string>
+    <string name="btnSell">Sell</string>
+    <string name="btnBuy">Buy</string>
 </resources>
