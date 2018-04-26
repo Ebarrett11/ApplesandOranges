@@ -66,96 +66,114 @@ public class GameScreen extends AppCompatActivity {
         ImageButton btnShop = (ImageButton) findViewById(R.id.btnShop);
 
         //setting tree images with store
-        if (aTreeTotal == 1){
-            treeOne.setImageResource(R.drawable.appletree);
-        }else if (aTreeTotal == 2){
-            treeOne.setImageResource(R.drawable.appletree);
-            treeTwo.setImageResource(R.drawable.appletree);
-        }else if (aTreeTotal == 3){
-            treeOne.setImageResource(R.drawable.appletree);
-            treeTwo.setImageResource(R.drawable.appletree);
-            treeThree.setImageResource(R.drawable.appletree);
-        }else if (aTreeTotal == 4){
-            treeOne.setImageResource(R.drawable.appletree);
-            treeTwo.setImageResource(R.drawable.appletree);
-            treeThree.setImageResource(R.drawable.appletree);
-            treeFour.setImageResource(R.drawable.appletree);
-        }else if (aTreeTotal == 5){
-            treeOne.setImageResource(R.drawable.appletree);
-            treeTwo.setImageResource(R.drawable.appletree);
-            treeThree.setImageResource(R.drawable.appletree);
-            treeFour.setImageResource(R.drawable.appletree);
-            treeFive.setImageResource(R.drawable.appletree);
-        }else if (aTreeTotal == 6){
-            treeOne.setImageResource(R.drawable.appletree);
-            treeTwo.setImageResource(R.drawable.appletree);
-            treeThree.setImageResource(R.drawable.appletree);
-            treeFour.setImageResource(R.drawable.appletree);
-            treeFive.setImageResource(R.drawable.appletree);
-            treeSix.setImageResource(R.drawable.appletree);
-        }else if (aTreeTotal == 7){
-            treeOne.setImageResource(R.drawable.appletree);
-            treeTwo.setImageResource(R.drawable.appletree);
-            treeThree.setImageResource(R.drawable.appletree);
-            treeFour.setImageResource(R.drawable.appletree);
-            treeFive.setImageResource(R.drawable.appletree);
-            treeSix.setImageResource(R.drawable.appletree);
-            treeSeven.setImageResource(R.drawable.appletree);
-        }else if (aTreeTotal == 8){
-            treeOne.setImageResource(R.drawable.appletree);
-            treeTwo.setImageResource(R.drawable.appletree);
-            treeThree.setImageResource(R.drawable.appletree);
-            treeFour.setImageResource(R.drawable.appletree);
-            treeFive.setImageResource(R.drawable.appletree);
-            treeSix.setImageResource(R.drawable.appletree);
-            treeSeven.setImageResource(R.drawable.appletree);
-            treeEight.setImageResource(R.drawable.appletree);
+        switch (aTreeTotal) {
+            case 1:
+                treeOne.setImageResource(R.drawable.appletree);
+                break;
+            case 2:
+                treeOne.setImageResource(R.drawable.appletree);
+                treeTwo.setImageResource(R.drawable.appletree);
+                break;
+            case 3:
+                treeOne.setImageResource(R.drawable.appletree);
+                treeTwo.setImageResource(R.drawable.appletree);
+                treeThree.setImageResource(R.drawable.appletree);
+                break;
+            case 4:
+                treeOne.setImageResource(R.drawable.appletree);
+                treeTwo.setImageResource(R.drawable.appletree);
+                treeThree.setImageResource(R.drawable.appletree);
+                treeFour.setImageResource(R.drawable.appletree);
+                break;
+            case 5:
+                treeOne.setImageResource(R.drawable.appletree);
+                treeTwo.setImageResource(R.drawable.appletree);
+                treeThree.setImageResource(R.drawable.appletree);
+                treeFour.setImageResource(R.drawable.appletree);
+                treeFive.setImageResource(R.drawable.appletree);
+                break;
+            case 6:
+                treeOne.setImageResource(R.drawable.appletree);
+                treeTwo.setImageResource(R.drawable.appletree);
+                treeThree.setImageResource(R.drawable.appletree);
+                treeFour.setImageResource(R.drawable.appletree);
+                treeFive.setImageResource(R.drawable.appletree);
+                treeSix.setImageResource(R.drawable.appletree);
+                break;
+            case 7:
+                treeOne.setImageResource(R.drawable.appletree);
+                treeTwo.setImageResource(R.drawable.appletree);
+                treeThree.setImageResource(R.drawable.appletree);
+                treeFour.setImageResource(R.drawable.appletree);
+                treeFive.setImageResource(R.drawable.appletree);
+                treeSix.setImageResource(R.drawable.appletree);
+                treeSeven.setImageResource(R.drawable.appletree);
+                break;
+            case 8:
+                treeOne.setImageResource(R.drawable.appletree);
+                treeTwo.setImageResource(R.drawable.appletree);
+                treeThree.setImageResource(R.drawable.appletree);
+                treeFour.setImageResource(R.drawable.appletree);
+                treeFive.setImageResource(R.drawable.appletree);
+                treeSix.setImageResource(R.drawable.appletree);
+                treeSeven.setImageResource(R.drawable.appletree);
+                treeEight.setImageResource(R.drawable.appletree);
+                break;
         }
 
-        if (oTreeTotal == 1){
-            treeNine.setImageResource(R.drawable.orangetree);
-        }else if (oTreeTotal == 2){
-            treeNine.setImageResource(R.drawable.orangetree);
-            treeTen.setImageResource(R.drawable.orangetree);
-        }else if (oTreeTotal == 3){
-            treeNine.setImageResource(R.drawable.orangetree);
-            treeTen.setImageResource(R.drawable.orangetree);
-            treeEleven.setImageResource(R.drawable.orangetree);
-        }else if (oTreeTotal == 4){
-            treeNine.setImageResource(R.drawable.orangetree);
-            treeTen.setImageResource(R.drawable.orangetree);
-            treeEleven.setImageResource(R.drawable.orangetree);
-            treeTwelve.setImageResource(R.drawable.orangetree);
-        }else if (oTreeTotal == 5){
-            treeNine.setImageResource(R.drawable.orangetree);
-            treeTen.setImageResource(R.drawable.orangetree);
-            treeEleven.setImageResource(R.drawable.orangetree);
-            treeTwelve.setImageResource(R.drawable.orangetree);
-            treeThirteen.setImageResource(R.drawable.orangetree);
-        }else if (oTreeTotal == 6){
-            treeNine.setImageResource(R.drawable.orangetree);
-            treeTen.setImageResource(R.drawable.orangetree);
-            treeEleven.setImageResource(R.drawable.orangetree);
-            treeTwelve.setImageResource(R.drawable.orangetree);
-            treeThirteen.setImageResource(R.drawable.orangetree);
-            treeFourteen.setImageResource(R.drawable.orangetree);
-        }else if (oTreeTotal == 7){
-            treeNine.setImageResource(R.drawable.orangetree);
-            treeTen.setImageResource(R.drawable.orangetree);
-            treeEleven.setImageResource(R.drawable.orangetree);
-            treeTwelve.setImageResource(R.drawable.orangetree);
-            treeThirteen.setImageResource(R.drawable.orangetree);
-            treeFourteen.setImageResource(R.drawable.orangetree);
-            treeFifteen.setImageResource(R.drawable.orangetree);
-        }else if (oTreeTotal == 8){
-            treeNine.setImageResource(R.drawable.orangetree);
-            treeTen.setImageResource(R.drawable.orangetree);
-            treeEleven.setImageResource(R.drawable.orangetree);
-            treeTwelve.setImageResource(R.drawable.orangetree);
-            treeThirteen.setImageResource(R.drawable.orangetree);
-            treeFourteen.setImageResource(R.drawable.orangetree);
-            treeFifteen.setImageResource(R.drawable.orangetree);
-            treeSixteen.setImageResource(R.drawable.orangetree);
+        switch (oTreeTotal) {
+            case 1:
+                treeNine.setImageResource(R.drawable.orangetree);
+                break;
+            case 2:
+                treeNine.setImageResource(R.drawable.orangetree);
+                treeTen.setImageResource(R.drawable.orangetree);
+                break;
+            case 3:
+                treeNine.setImageResource(R.drawable.orangetree);
+                treeTen.setImageResource(R.drawable.orangetree);
+                treeEleven.setImageResource(R.drawable.orangetree);
+                break;
+            case 4:
+                treeNine.setImageResource(R.drawable.orangetree);
+                treeTen.setImageResource(R.drawable.orangetree);
+                treeEleven.setImageResource(R.drawable.orangetree);
+                treeTwelve.setImageResource(R.drawable.orangetree);
+                break;
+            case 5:
+                treeNine.setImageResource(R.drawable.orangetree);
+                treeTen.setImageResource(R.drawable.orangetree);
+                treeEleven.setImageResource(R.drawable.orangetree);
+                treeTwelve.setImageResource(R.drawable.orangetree);
+                treeThirteen.setImageResource(R.drawable.orangetree);
+                break;
+            case 6:
+                treeNine.setImageResource(R.drawable.orangetree);
+                treeTen.setImageResource(R.drawable.orangetree);
+                treeEleven.setImageResource(R.drawable.orangetree);
+                treeTwelve.setImageResource(R.drawable.orangetree);
+                treeThirteen.setImageResource(R.drawable.orangetree);
+                treeFourteen.setImageResource(R.drawable.orangetree);
+                break;
+            case 7:
+                treeNine.setImageResource(R.drawable.orangetree);
+                treeTen.setImageResource(R.drawable.orangetree);
+                treeEleven.setImageResource(R.drawable.orangetree);
+                treeTwelve.setImageResource(R.drawable.orangetree);
+                treeThirteen.setImageResource(R.drawable.orangetree);
+                treeFourteen.setImageResource(R.drawable.orangetree);
+                treeFifteen.setImageResource(R.drawable.orangetree);
+                break;
+            case 8:
+                treeNine.setImageResource(R.drawable.orangetree);
+                treeTen.setImageResource(R.drawable.orangetree);
+                treeEleven.setImageResource(R.drawable.orangetree);
+                treeTwelve.setImageResource(R.drawable.orangetree);
+                treeThirteen.setImageResource(R.drawable.orangetree);
+                treeFourteen.setImageResource(R.drawable.orangetree);
+                treeFifteen.setImageResource(R.drawable.orangetree);
+                treeSixteen.setImageResource(R.drawable.orangetree);
+                break;
         }
 
         //player name file
