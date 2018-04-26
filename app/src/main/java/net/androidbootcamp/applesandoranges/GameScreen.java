@@ -184,7 +184,7 @@ public class GameScreen extends AppCompatActivity {
         });
 
         //actual game timer stuff
-        //apple timer
+        //apple_s timer
         final Handler appleHandler = new Handler();
         final int appleDelay = 1000; //milliseconds
 
