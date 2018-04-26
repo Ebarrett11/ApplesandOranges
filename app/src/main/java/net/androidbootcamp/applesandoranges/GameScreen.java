@@ -172,6 +172,7 @@ public class GameScreen extends AppCompatActivity {
         }
 
         //setting elements
+        txtWallet.setText("$" + wallet);
         txtApple.setText(appleTotal + " apples");
         txtOrange.setText(orangeTotal + " oranges");
 
