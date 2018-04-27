@@ -23,4 +23,5 @@
     <string name="imgOrange">Orange Image</string>
     <string name="btnSell">Sell</string>
     <string name="btnBuy">Buy</string>
+    <string name="btnGame">Back to Game</string>
 </resources>
