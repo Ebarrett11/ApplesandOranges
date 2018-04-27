@@ -2,6 +2,8 @@ package net.androidbootcamp.applesandoranges;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,7 +15,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class StartScreen extends AppCompatActivity {
-    String playerName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -18,7 +18,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 public class GameScreen extends AppCompatActivity {
-    int wallet = 500;
+    int wallet;
     int appleTotal, orangeTotal, aTreeTotal, oTreeTotal;
     TextView txtApple, txtOrange;
 
@@ -59,11 +59,18 @@ public class GameScreen extends AppCompatActivity {
         oTreeTotal = trees.getInt("oTreeTotal", 0);
 
         //creating elements
-        TextView txtPlayerName = (TextView) findViewById(R.id.txtPlayerName);
-        TextView txtWallet = (TextView) findViewById(R.id.txtWallet);
-        txtApple = (TextView) findViewById(R.id.txtApple);
-        txtOrange = (TextView) findViewById(R.id.txtOrange);
-        ImageButton btnShop = (ImageButton) findViewById(R.id.btnShop);
+        TextView txtPlayerName = findViewById(R.id.txtPlayerName);
+        TextView txtWallet = findViewById(R.id.txtWallet);
+        txtApple = findViewById(R.id.txtApple);
+        txtOrange = findViewById(R.id.txtOrange);
+        ImageButton btnShop = findViewById(R.id.btnShop);
+
+        if (aTreeTotal == 0){
+            wallet = 50;
+            SharedPreferences.Editor editor = fruitPrefs.edit();
+            editor.putInt("wallet", wallet);
+            editor.commit();
+        }
 
         //setting tree images with store
         switch (aTreeTotal) {
