@@ -13,14 +13,17 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 
 public class GameScreen extends AppCompatActivity {
-    int wallet;
+    int wallet, stock = 5;
     int appleTotal, orangeTotal, aTreeTotal, oTreeTotal;
-    TextView txtApple, txtOrange;
+    TextView txtApple, txtOrange, txtStock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +66,7 @@ public class GameScreen extends AppCompatActivity {
         TextView txtWallet = findViewById(R.id.txtWallet);
         txtApple = findViewById(R.id.txtApple);
         txtOrange = findViewById(R.id.txtOrange);
+        txtStock = findViewById(R.id.txtStock);
         ImageButton btnShop = findViewById(R.id.btnShop);
 
         if (aTreeTotal == 0){
@@ -236,17 +240,49 @@ public class GameScreen extends AppCompatActivity {
             }
         }, orangeDelay);
 
-    }
+        //saving everything
+        final Handler saving = new Handler();
+        final int saveTimer = 1000; //milliseconds
 
-    protected void onStop(){
-        super.onStop();
-        SharedPreferences fruitPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = fruitPrefs.edit();
-        editor.putInt("appleTotal", appleTotal);
-        editor.putInt("orangeTotal", orangeTotal);
-        editor.putInt("aTreeTotal", aTreeTotal);
-        editor.putInt("oTreeTotal", oTreeTotal);
-        editor.putInt("wallet", wallet);
-        editor.commit();
+        orangeHandler.postDelayed(new Runnable(){
+            @SuppressLint("SetTextI18n")
+            public void run(){
+                SharedPreferences fruitPrefs = PreferenceManager.getDefaultSharedPreferences(GameScreen.this);
+                SharedPreferences.Editor editor = fruitPrefs.edit();
+                editor.putInt("appleTotal", appleTotal);
+                editor.putInt("orangeTotal", orangeTotal);
+                editor.putInt("aTreeTotal", aTreeTotal);
+                editor.putInt("oTreeTotal", oTreeTotal);
+                editor.putInt("wallet", wallet);
+                editor.commit();
+                saving.postDelayed(this, saveTimer);
+            }
+        }, saveTimer);
+
+        final Handler stockHandler = new Handler();
+        final int stockDelay = 100; //milliseconds
+
+        stockHandler.postDelayed(new Runnable(){
+
+            public void run(){
+                Random rand2 = new Random();
+                int crash = rand2.nextInt(200) + 1;
+
+                Random rand = new Random();
+                int decider = rand.nextInt(10) + 1;
+
+                if(crash == 1) {
+                    stock = stock - (stock /2);
+                }
+                if( decider >= 5) {
+                    stock = stock + 1;
+                }
+                else if(decider < 4) {
+                    stock = stock -1;
+                }
+                txtStock.setText("Stock Price: " + stock );
+                stockHandler.postDelayed(this, stockDelay);
+            }
+        }, stockDelay);
     }
 }
