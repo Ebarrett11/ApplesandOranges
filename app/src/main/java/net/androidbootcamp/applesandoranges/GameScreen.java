@@ -3,6 +3,7 @@ package net.androidbootcamp.applesandoranges;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.AnimationDrawable;
 import android.media.Image;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -24,6 +25,10 @@ public class GameScreen extends AppCompatActivity {
     int wallet, stock = 5;
     int appleTotal, orangeTotal, aTreeTotal, oTreeTotal;
     TextView txtApple, txtOrange, txtStock;
+    AnimationDrawable appleAnimation, orangeAnimation;
+    Intent mIntent = getIntent();
+    String previousActivity= mIntent.getStringExtra("FROM_ACTIVITY");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,22 +36,22 @@ public class GameScreen extends AppCompatActivity {
         setContentView(R.layout.activity_game_screen);
 
         //trees
-        ImageView treeOne = findViewById(R.id.imgTree1);
-        ImageView treeTwo = findViewById(R.id.imgTree2);
-        ImageView treeThree = findViewById(R.id.imgTree3);
-        ImageView treeFour = findViewById(R.id.imgTree4);
-        ImageView treeFive = findViewById(R.id.imgTree5);
-        ImageView treeSix = findViewById(R.id.imgTree6);
-        ImageView treeSeven = findViewById(R.id.imgTree7);
-        ImageView treeEight = findViewById(R.id.imgTree8);
-        ImageView treeNine = findViewById(R.id.imgTree9);
-        ImageView treeTen = findViewById(R.id.imgTree10);
-        ImageView treeEleven = findViewById(R.id.imgTree11);
-        ImageView treeTwelve = findViewById(R.id.imgTree12);
-        ImageView treeThirteen = findViewById(R.id.imgTree13);
-        ImageView treeFourteen = findViewById(R.id.imgTree14);
-        ImageView treeFifteen = findViewById(R.id.imgTree15);
-        ImageView treeSixteen = findViewById(R.id.imgTree16);
+        final ImageView treeOne = findViewById(R.id.imgTree1);
+        final ImageView treeTwo = findViewById(R.id.imgTree2);
+        final ImageView treeThree = findViewById(R.id.imgTree3);
+        final  ImageView treeFour = findViewById(R.id.imgTree4);
+        final ImageView treeFive = findViewById(R.id.imgTree5);
+        final ImageView treeSix = findViewById(R.id.imgTree6);
+        final ImageView treeSeven = findViewById(R.id.imgTree7);
+        final ImageView treeEight = findViewById(R.id.imgTree8);
+        final ImageView treeNine = findViewById(R.id.imgTree9);
+        final ImageView treeTen = findViewById(R.id.imgTree10);
+        final ImageView treeEleven = findViewById(R.id.imgTree11);
+        final ImageView treeTwelve = findViewById(R.id.imgTree12);
+        final ImageView treeThirteen = findViewById(R.id.imgTree13);
+        final ImageView treeFourteen = findViewById(R.id.imgTree14);
+        final ImageView treeFifteen = findViewById(R.id.imgTree15);
+        final ImageView treeSixteen = findViewById(R.id.imgTree16);
 
         //get fruits from sharedPrefs
         SharedPreferences fruitPrefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -55,6 +60,7 @@ public class GameScreen extends AppCompatActivity {
         aTreeTotal = fruitPrefs.getInt("aTreeTotal", 0);
         oTreeTotal = fruitPrefs.getInt("oTreeTotal", 0);
         wallet = fruitPrefs.getInt("wallet", 0);
+        stock = fruitPrefs.getInt("stock", 0);
 
         //getting tree buying info
         SharedPreferences trees = PreferenceManager.getDefaultSharedPreferences(this);
@@ -79,16 +85,61 @@ public class GameScreen extends AppCompatActivity {
         //setting tree images with store
         switch (aTreeTotal) {
             case 1:
-                treeOne.setImageResource(R.drawable.appletree);
+                if (previousActivity.equals("S")){
+                    treeOne.setImageResource(0);
+                    treeOne.setBackgroundResource(R.drawable.apple_grow);
+                    appleAnimation = (AnimationDrawable)treeOne.getBackground();
+                    appleAnimation.start();
+                    TimerTask task = new TimerTask() {
+                        @Override
+                        public void run() {
+                            appleAnimation.stop();
+                        }
+                    };
+                    Timer opening = new Timer();
+                    opening.schedule(task, 3000);
+                }else {
+                    treeOne.setImageResource(R.drawable.appletree);
+                }
                 break;
             case 2:
-                treeOne.setImageResource(R.drawable.appletree);
                 treeTwo.setImageResource(R.drawable.appletree);
+                if (previousActivity.equals("S")){
+                    treeTwo.setImageResource(0);
+                    treeTwo.setBackgroundResource(R.drawable.apple_grow);
+                    appleAnimation = (AnimationDrawable)treeTwo.getBackground();
+                    appleAnimation.start();
+                    TimerTask task = new TimerTask() {
+                        @Override
+                        public void run() {
+                            appleAnimation.stop();
+                        }
+                    };
+                    Timer opening = new Timer();
+                    opening.schedule(task, 3000);
+                }else {
+                    treeTwo.setImageResource(R.drawable.appletree);
+                }
                 break;
             case 3:
                 treeOne.setImageResource(R.drawable.appletree);
                 treeTwo.setImageResource(R.drawable.appletree);
-                treeThree.setImageResource(R.drawable.appletree);
+                if (previousActivity.equals("S")){
+                    treeThree.setImageResource(0);
+                    treeThree.setBackgroundResource(R.drawable.apple_grow);
+                    appleAnimation = (AnimationDrawable)treeThree.getBackground();
+                    appleAnimation.start();
+                    TimerTask task = new TimerTask() {
+                        @Override
+                        public void run() {
+                            appleAnimation.stop();
+                        }
+                    };
+                    Timer opening = new Timer();
+                    opening.schedule(task, 3000);
+                }else {
+                    treeThree.setImageResource(R.drawable.appletree);
+                }
                 break;
             case 4:
                 treeOne.setImageResource(R.drawable.appletree);
@@ -254,13 +305,14 @@ public class GameScreen extends AppCompatActivity {
                 editor.putInt("aTreeTotal", aTreeTotal);
                 editor.putInt("oTreeTotal", oTreeTotal);
                 editor.putInt("wallet", wallet);
+                editor.putInt("stock", stock);
                 editor.commit();
                 saving.postDelayed(this, saveTimer);
             }
         }, saveTimer);
 
         final Handler stockHandler = new Handler();
-        final int stockDelay = 100; //milliseconds
+        final int stockDelay = 1000; //milliseconds
 
         stockHandler.postDelayed(new Runnable(){
 
@@ -285,4 +337,5 @@ public class GameScreen extends AppCompatActivity {
             }
         }, stockDelay);
     }
+
 }
