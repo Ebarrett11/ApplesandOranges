@@ -19,7 +19,6 @@ import java.io.IOException;
 public class GameScreen extends AppCompatActivity {
     int wallet, stock = 5;
     int appleTotal, orangeTotal, aTreeTotal, oTreeTotal;
-    TextView txtApple, txtOrange, txtStock;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -48,9 +47,9 @@ public class GameScreen extends AppCompatActivity {
         //creating elements
         TextView txtPlayerName = findViewById(R.id.txtPlayerName);
         TextView txtWallet = findViewById(R.id.txtWallet);
-        txtApple = findViewById(R.id.txtApple);
-        txtOrange = findViewById(R.id.txtOrange);
-        //txtStock = findViewById(R.id.txtStock);
+        final TextView txtApple = findViewById(R.id.txtApple);
+        final TextView txtOrange = findViewById(R.id.txtOrange);
+        //TextView txtStock = findViewById(R.id.txtStock);
         ImageButton btnShop = findViewById(R.id.btnShop);
 
         //get fruits from sharedPrefs
@@ -60,7 +59,7 @@ public class GameScreen extends AppCompatActivity {
         aTreeTotal = fruitPrefs.getInt("aTreeTotal", 0);
         oTreeTotal = fruitPrefs.getInt("oTreeTotal", 0);
         wallet = fruitPrefs.getInt("wallet", 0);
-       // stock = fruitPrefs.getInt("stock", 0);
+        // stock = fruitPrefs.getInt("stock", 0);
 
         if (aTreeTotal == 0) {
             wallet = 50;
@@ -199,6 +198,13 @@ public class GameScreen extends AppCompatActivity {
         btnShop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SharedPreferences.Editor fruitEdit = fruitPrefs.edit();
+                fruitEdit.putInt("appleTotal", appleTotal);
+                fruitEdit.putInt("orangeTotal", orangeTotal);
+                fruitEdit.putInt("aTreeTotal", aTreeTotal);
+                fruitEdit.putInt("oTreeTotal", oTreeTotal);
+                fruitEdit.putInt("wallet", wallet);
+                fruitEdit.commit();
                 startActivity(new Intent(GameScreen.this, ShopScreen.class));
             }
         });
@@ -210,11 +216,13 @@ public class GameScreen extends AppCompatActivity {
 
         appleHandler.postDelayed(new Runnable(){
             public void run(){
-                appleTotal = appleTotal + (aTreeTotal);
+                appleTotal = appleTotal + aTreeTotal;
                 txtApple.setText(appleTotal + " apples");
+
                 SharedPreferences.Editor fruitEdit = fruitPrefs.edit();
                 fruitEdit.putInt("appleTotal", appleTotal);
                 fruitEdit.commit();
+
                 appleHandler.postDelayed(this, appleDelay);
             }
         }, appleDelay);
@@ -225,11 +233,13 @@ public class GameScreen extends AppCompatActivity {
 
         orangeHandler.postDelayed(new Runnable(){
             public void run(){
-                orangeTotal = orangeTotal + (oTreeTotal);
+                orangeTotal = orangeTotal + oTreeTotal;
                 txtOrange.setText(orangeTotal + " oranges");
+
                 SharedPreferences.Editor fruitEdit = fruitPrefs.edit();
                 fruitEdit.putInt("orangeTotal", orangeTotal);
                 fruitEdit.commit();
+
                 orangeHandler.postDelayed(this, orangeDelay);
             }
         }, orangeDelay);
@@ -242,12 +252,7 @@ public class GameScreen extends AppCompatActivity {
             public void run(){
                 SharedPreferences fruitPrefs = PreferenceManager.getDefaultSharedPreferences(GameScreen.this);
                 SharedPreferences.Editor fruitEdit = fruitPrefs.edit();
-//                fruitEdit.putInt("appleTotal", appleTotal);
-//                fruitEdit.putInt("orangeTotal", orangeTotal);
-                fruitEdit.putInt("aTreeTotal", aTreeTotal);
-                fruitEdit.putInt("oTreeTotal", oTreeTotal);
-                fruitEdit.putInt("wallet", wallet);
-                //fruitEdit.putInt("stock", stock);
+                fruitEdit.putInt("stock", stock);
                 fruitEdit.commit();
                 saving.postDelayed(this, saveTimer);
             }

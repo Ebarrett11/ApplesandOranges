@@ -35,16 +35,14 @@ public class ShopScreen extends AppCompatActivity {
         final TextView txtFruitStats = findViewById(R.id.txtFruitStats);
 
         final SharedPreferences fruitPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        wallet = fruitPrefs.getInt("wallet", 0);
-        //stock = fruitPrefs.getInt("stock",0);
         appleTotal = fruitPrefs.getInt("appleTotal", 0);
         orangeTotal = fruitPrefs.getInt("orangeTotal", 0);
+        wallet = fruitPrefs.getInt("wallet", 0);
+        //stock = fruitPrefs.getInt("stock",0);
 
-        txtFruitStats.setText("apples: " + appleTotal);
+        txtFruitStats.setText("apples: " + appleTotal + "\noranges: " + orangeTotal);
 
         final  EditText txtAmount = findViewById(R.id.txtSellAmount);
-
-        final SharedPreferences.Editor fruitEdit = fruitPrefs.edit();
 
         game.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +56,6 @@ public class ShopScreen extends AppCompatActivity {
             public void onClick(View view) {
                 buyCost = 50;
                 txtCost.setText("Cost: 50");
-
             }
 
         });
@@ -68,7 +65,6 @@ public class ShopScreen extends AppCompatActivity {
             public void onClick(View view) {
                 buyCost = 75;
                 txtCost.setText("Cost: 75");
-
             }
         });
 
@@ -83,21 +79,22 @@ public class ShopScreen extends AppCompatActivity {
                     if ((wallet - buyCost) < 0){
                         Toast.makeText(getBaseContext(), "You don't have enough money!", Toast.LENGTH_LONG).show();
                     }else {
-                        wallet -= buyCost;
-                        fruitEdit.putInt("wallet", wallet);
-                        fruitEdit.commit();
+                        wallet = wallet - buyCost;
 
                         if (buyCost == 50){
                             aTreeTotal++;
-                            fruitEdit.putInt("aTreeTotal", aTreeTotal);
-                            fruitEdit.commit();
-
                         } else if (buyCost == 75){
                             oTreeTotal++;
-                            fruitEdit.putInt("oTreeTotal", oTreeTotal);
-                            fruitEdit.commit();
-
                         }
+
+                        SharedPreferences.Editor fruitEdit = fruitPrefs.edit();
+                        fruitEdit.putInt("appleTotal", appleTotal);
+                        fruitEdit.putInt("orangeTotal", orangeTotal);
+                        fruitEdit.putInt("aTreeTotal", aTreeTotal);
+                        fruitEdit.putInt("oTreeTotal", oTreeTotal);
+                        fruitEdit.putInt("wallet", wallet);
+                        fruitEdit.commit();
+
                         Toast.makeText(getBaseContext(), "-" + buyCost, Toast.LENGTH_SHORT).show();
 
                         startActivity(new Intent(ShopScreen.this, GameScreen.class));
@@ -144,31 +141,38 @@ public class ShopScreen extends AppCompatActivity {
                     if (choice.equals("apple")) {
                         if ((appleTotal - amount) >= 0) {
                             gain = amount * 2;
-                            appleTotal -= amount;
-                            wallet += gain;
+                            appleTotal = appleTotal - amount;
+                            wallet = wallet + gain;
 
-                            fruitEdit.putInt("wallet", wallet);
-                            fruitEdit.putInt("appleTotal", appleTotal);
-                            fruitEdit.commit();
                             Toast.makeText(getBaseContext(), "+" + gain, Toast.LENGTH_LONG).show();
+
+                            SharedPreferences.Editor fruitEdit = fruitPrefs.edit();
+                            fruitEdit.putInt("appleTotal", appleTotal);
+                            fruitEdit.putInt("orangeTotal", orangeTotal);
+                            fruitEdit.putInt("wallet", wallet);
+                            fruitEdit.commit();
+
                             startActivity(new Intent(ShopScreen.this, GameScreen.class));
                         } else {
-                            Toast.makeText(getBaseContext(), "You don't have enough fruit!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getBaseContext(), "You don't have enough apples!", Toast.LENGTH_LONG).show();
                         }
                     } else if (choice.equals("orange")) {
                         if ((orangeTotal - amount) >= 0) {
                             gain = amount * 2;
-                            orangeTotal -= amount;
-                            wallet += gain;
-
-                            fruitEdit.putInt("wallet", wallet);
-                            fruitEdit.putInt("orangeTotal", orangeTotal);
-                            fruitEdit.commit();
+                            orangeTotal = orangeTotal - amount;
+                            wallet = wallet + gain;
 
                             Toast.makeText(getBaseContext(), "+" + gain, Toast.LENGTH_LONG).show();
+
+                            SharedPreferences.Editor fruitEdit = fruitPrefs.edit();
+                            fruitEdit.putInt("appleTotal", appleTotal);
+                            fruitEdit.putInt("orangeTotal", orangeTotal);
+                            fruitEdit.putInt("wallet", wallet);
+                            fruitEdit.commit();
+
                             startActivity(new Intent(ShopScreen.this, GameScreen.class));
                         } else {
-                            Toast.makeText(getBaseContext(), "You don't have enough fruit!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getBaseContext(), "You don't have enough oranges!", Toast.LENGTH_LONG).show();
                         }
                     }
                 }
