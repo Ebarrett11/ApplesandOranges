@@ -3,8 +3,6 @@ package net.androidbootcamp.applesandoranges;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.AnimationDrawable;
-import android.media.Image;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -14,9 +12,6 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -25,11 +20,8 @@ public class GameScreen extends AppCompatActivity {
     int wallet, stock = 5;
     int appleTotal, orangeTotal, aTreeTotal, oTreeTotal;
     TextView txtApple, txtOrange, txtStock;
-    AnimationDrawable appleAnimation, orangeAnimation;
-    Intent mIntent = getIntent();
-    String previousActivity= mIntent.getStringExtra("FROM_ACTIVITY");
 
-
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +31,7 @@ public class GameScreen extends AppCompatActivity {
         final ImageView treeOne = findViewById(R.id.imgTree1);
         final ImageView treeTwo = findViewById(R.id.imgTree2);
         final ImageView treeThree = findViewById(R.id.imgTree3);
-        final  ImageView treeFour = findViewById(R.id.imgTree4);
+        final ImageView treeFour = findViewById(R.id.imgTree4);
         final ImageView treeFive = findViewById(R.id.imgTree5);
         final ImageView treeSix = findViewById(R.id.imgTree6);
         final ImageView treeSeven = findViewById(R.id.imgTree7);
@@ -53,93 +45,45 @@ public class GameScreen extends AppCompatActivity {
         final ImageView treeFifteen = findViewById(R.id.imgTree15);
         final ImageView treeSixteen = findViewById(R.id.imgTree16);
 
-        //get fruits from sharedPrefs
-        SharedPreferences fruitPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        appleTotal = fruitPrefs.getInt("appleTotal", 0);
-        orangeTotal = fruitPrefs.getInt("orangeTotal", 0);
-        aTreeTotal = fruitPrefs.getInt("aTreeTotal", 0);
-        oTreeTotal = fruitPrefs.getInt("oTreeTotal", 0);
-        wallet = fruitPrefs.getInt("wallet", 0);
-        stock = fruitPrefs.getInt("stock", 0);
-
-        //getting tree buying info
-        SharedPreferences trees = PreferenceManager.getDefaultSharedPreferences(this);
-        aTreeTotal = trees.getInt("aTreeTotal", 0);
-        oTreeTotal = trees.getInt("oTreeTotal", 0);
-
         //creating elements
         TextView txtPlayerName = findViewById(R.id.txtPlayerName);
         TextView txtWallet = findViewById(R.id.txtWallet);
         txtApple = findViewById(R.id.txtApple);
         txtOrange = findViewById(R.id.txtOrange);
-        txtStock = findViewById(R.id.txtStock);
+        //txtStock = findViewById(R.id.txtStock);
         ImageButton btnShop = findViewById(R.id.btnShop);
 
-        if (aTreeTotal == 0){
+        //get fruits from sharedPrefs
+        final SharedPreferences fruitPrefs = PreferenceManager.getDefaultSharedPreferences(GameScreen.this);
+        appleTotal = fruitPrefs.getInt("appleTotal", 0);
+        orangeTotal = fruitPrefs.getInt("orangeTotal", 0);
+        aTreeTotal = fruitPrefs.getInt("aTreeTotal", 0);
+        oTreeTotal = fruitPrefs.getInt("oTreeTotal", 0);
+        wallet = fruitPrefs.getInt("wallet", 0);
+       // stock = fruitPrefs.getInt("stock", 0);
+
+        if (aTreeTotal == 0) {
             wallet = 50;
-            SharedPreferences.Editor editor = fruitPrefs.edit();
-            editor.putInt("wallet", wallet);
-            editor.commit();
         }
+
+        //setting elements
+        txtWallet.setText("$" + wallet);
+        txtApple.setText(appleTotal + " apples");
+        txtOrange.setText(orangeTotal + " oranges");
 
         //setting tree images with store
         switch (aTreeTotal) {
             case 1:
-                if (previousActivity.equals("S")){
-                    treeOne.setImageResource(0);
-                    treeOne.setBackgroundResource(R.drawable.apple_grow);
-                    appleAnimation = (AnimationDrawable)treeOne.getBackground();
-                    appleAnimation.start();
-                    TimerTask task = new TimerTask() {
-                        @Override
-                        public void run() {
-                            appleAnimation.stop();
-                        }
-                    };
-                    Timer opening = new Timer();
-                    opening.schedule(task, 3000);
-                }else {
-                    treeOne.setImageResource(R.drawable.appletree);
-                }
+                treeOne.setImageResource(R.drawable.appletree);
                 break;
             case 2:
+                treeOne.setImageResource(R.drawable.appletree);
                 treeTwo.setImageResource(R.drawable.appletree);
-                if (previousActivity.equals("S")){
-                    treeTwo.setImageResource(0);
-                    treeTwo.setBackgroundResource(R.drawable.apple_grow);
-                    appleAnimation = (AnimationDrawable)treeTwo.getBackground();
-                    appleAnimation.start();
-                    TimerTask task = new TimerTask() {
-                        @Override
-                        public void run() {
-                            appleAnimation.stop();
-                        }
-                    };
-                    Timer opening = new Timer();
-                    opening.schedule(task, 3000);
-                }else {
-                    treeTwo.setImageResource(R.drawable.appletree);
-                }
                 break;
             case 3:
                 treeOne.setImageResource(R.drawable.appletree);
                 treeTwo.setImageResource(R.drawable.appletree);
-                if (previousActivity.equals("S")){
-                    treeThree.setImageResource(0);
-                    treeThree.setBackgroundResource(R.drawable.apple_grow);
-                    appleAnimation = (AnimationDrawable)treeThree.getBackground();
-                    appleAnimation.start();
-                    TimerTask task = new TimerTask() {
-                        @Override
-                        public void run() {
-                            appleAnimation.stop();
-                        }
-                    };
-                    Timer opening = new Timer();
-                    opening.schedule(task, 3000);
-                }else {
-                    treeThree.setImageResource(R.drawable.appletree);
-                }
+                treeThree.setImageResource(R.drawable.appletree);
                 break;
             case 4:
                 treeOne.setImageResource(R.drawable.appletree);
@@ -251,11 +195,6 @@ public class GameScreen extends AppCompatActivity {
             Log.e("ERROR", e.toString());
         }
 
-        //setting elements
-        txtWallet.setText("$" + wallet);
-        txtApple.setText(appleTotal + " apples");
-        txtOrange.setText(orangeTotal + " oranges");
-
         //go to shop
         btnShop.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -270,10 +209,12 @@ public class GameScreen extends AppCompatActivity {
         final int appleDelay = 1000; //milliseconds
 
         appleHandler.postDelayed(new Runnable(){
-            @SuppressLint("SetTextI18n")
             public void run(){
                 appleTotal = appleTotal + (aTreeTotal);
                 txtApple.setText(appleTotal + " apples");
+                SharedPreferences.Editor fruitEdit = fruitPrefs.edit();
+                fruitEdit.putInt("appleTotal", appleTotal);
+                fruitEdit.commit();
                 appleHandler.postDelayed(this, appleDelay);
             }
         }, appleDelay);
@@ -283,10 +224,12 @@ public class GameScreen extends AppCompatActivity {
         final int orangeDelay = 3000; //milliseconds
 
         orangeHandler.postDelayed(new Runnable(){
-            @SuppressLint("SetTextI18n")
             public void run(){
                 orangeTotal = orangeTotal + (oTreeTotal);
                 txtOrange.setText(orangeTotal + " oranges");
+                SharedPreferences.Editor fruitEdit = fruitPrefs.edit();
+                fruitEdit.putInt("orangeTotal", orangeTotal);
+                fruitEdit.commit();
                 orangeHandler.postDelayed(this, orangeDelay);
             }
         }, orangeDelay);
@@ -295,47 +238,47 @@ public class GameScreen extends AppCompatActivity {
         final Handler saving = new Handler();
         final int saveTimer = 1000; //milliseconds
 
-        orangeHandler.postDelayed(new Runnable(){
-            @SuppressLint("SetTextI18n")
+        saving.postDelayed(new Runnable(){
             public void run(){
                 SharedPreferences fruitPrefs = PreferenceManager.getDefaultSharedPreferences(GameScreen.this);
-                SharedPreferences.Editor editor = fruitPrefs.edit();
-                editor.putInt("appleTotal", appleTotal);
-                editor.putInt("orangeTotal", orangeTotal);
-                editor.putInt("aTreeTotal", aTreeTotal);
-                editor.putInt("oTreeTotal", oTreeTotal);
-                editor.putInt("wallet", wallet);
-                editor.putInt("stock", stock);
-                editor.commit();
+                SharedPreferences.Editor fruitEdit = fruitPrefs.edit();
+//                fruitEdit.putInt("appleTotal", appleTotal);
+//                fruitEdit.putInt("orangeTotal", orangeTotal);
+                fruitEdit.putInt("aTreeTotal", aTreeTotal);
+                fruitEdit.putInt("oTreeTotal", oTreeTotal);
+                fruitEdit.putInt("wallet", wallet);
+                //fruitEdit.putInt("stock", stock);
+                fruitEdit.commit();
                 saving.postDelayed(this, saveTimer);
             }
         }, saveTimer);
 
-        final Handler stockHandler = new Handler();
-        final int stockDelay = 1000; //milliseconds
-
-        stockHandler.postDelayed(new Runnable(){
-
-            public void run(){
-                Random rand2 = new Random();
-                int crash = rand2.nextInt(200) + 1;
-
-                Random rand = new Random();
-                int decider = rand.nextInt(10) + 1;
-
-                if(crash == 1) {
-                    stock = stock - (stock /2);
-                }
-                if( decider >= 5) {
-                    stock = stock + 1;
-                }
-                else if(decider < 4) {
-                    stock = stock -1;
-                }
-                txtStock.setText("Stock Price: " + stock );
-                stockHandler.postDelayed(this, stockDelay);
-            }
-        }, stockDelay);
+        //stock stuff
+//        final Handler stockHandler = new Handler();
+//        final int stockDelay = 1000; //milliseconds
+//
+//        stockHandler.postDelayed(new Runnable(){
+//
+//            public void run(){
+//                Random rand2 = new Random();
+//                int crash = rand2.nextInt(200) + 1;
+//
+//                Random rand = new Random();
+//                int decider = rand.nextInt(10) + 1;
+//
+//                if(crash == 1) {
+//                    stock = stock - (stock /2);
+//                }
+//                if( decider >= 5) {
+//                    stock = stock + 1;
+//                }
+//                else if(decider < 4) {
+//                    stock = stock -1;
+//                }
+//                txtStock.setText("Stock Price: " + stock );
+//                stockHandler.postDelayed(this, stockDelay);
+//            }
+//        }, stockDelay);
     }
 
 }

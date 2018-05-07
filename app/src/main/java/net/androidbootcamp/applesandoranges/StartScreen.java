@@ -2,8 +2,6 @@ package net.androidbootcamp.applesandoranges;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,8 +18,8 @@ public class StartScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_screen);
-        final EditText txtPlayerName = (EditText) findViewById(R.id.txtPlayer);
-        Button btnGo = (Button) findViewById(R.id.btnGo);
+        final EditText txtPlayerName = findViewById(R.id.txtPlayer);
+        Button btnGo = findViewById(R.id.btnGo);
 
         btnGo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,7 +38,7 @@ public class StartScreen extends AppCompatActivity {
                     Log.e("ERROR", e.toString());
                 }
 
-                startActivity(new Intent(StartScreen.this, GameScreen.class));
+                 startActivity(new Intent(StartScreen.this, GameScreen.class));
             }
         });
 
