@@ -9,16 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity">
+        <activity android:screenOrientation="landscape" android:name=".StartScreen"/>
+        <activity android:screenOrientation="landscape" android:name=".GameScreen"/>
+        <activity android:screenOrientation="landscape" android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GameScreen" />
-        <activity android:name=".StartScreen" />
-        <activity android:name=".ShopScreen"></activity>
+        <activity android:screenOrientation="landscape" android:name=".ShopScreen"/>
     </application>
 
 </manifest>
