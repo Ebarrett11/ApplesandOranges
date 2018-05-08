@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -15,9 +16,10 @@ import android.widget.TextView;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Random;
 
 public class GameScreen extends AppCompatActivity {
-    int wallet, stock = 5;
+    int wallet, stock = 5, oStock = 50;
     int appleTotal, orangeTotal, aTreeTotal, oTreeTotal;
 
     @SuppressLint("SetTextI18n")
@@ -25,6 +27,8 @@ public class GameScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_screen);
+
+        //AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
         //trees
         final ImageView treeOne = findViewById(R.id.imgTree1);
@@ -49,7 +53,8 @@ public class GameScreen extends AppCompatActivity {
         TextView txtWallet = findViewById(R.id.txtWallet);
         final TextView txtApple = findViewById(R.id.txtApple);
         final TextView txtOrange = findViewById(R.id.txtOrange);
-        //TextView txtStock = findViewById(R.id.txtStock);
+        final TextView txtStock = findViewById(R.id.txtStock);
+        final TextView txtOStock = findViewById(R.id.txtOStock);
         ImageButton btnShop = findViewById(R.id.btnShop);
 
         //get fruits from sharedPrefs
@@ -66,7 +71,7 @@ public class GameScreen extends AppCompatActivity {
         }
 
         //setting elements
-        txtWallet.setText("$" + wallet);
+        txtWallet.setText(wallet + "");
         txtApple.setText(appleTotal + " apples");
         txtOrange.setText(orangeTotal + " oranges");
 
@@ -217,7 +222,7 @@ public class GameScreen extends AppCompatActivity {
         appleHandler.postDelayed(new Runnable(){
             public void run(){
                 appleTotal = appleTotal + aTreeTotal;
-                txtApple.setText(appleTotal + " apples");
+                txtApple.setText(appleTotal + "");
 
                 SharedPreferences.Editor fruitEdit = fruitPrefs.edit();
                 fruitEdit.putInt("appleTotal", appleTotal);
@@ -234,7 +239,7 @@ public class GameScreen extends AppCompatActivity {
         orangeHandler.postDelayed(new Runnable(){
             public void run(){
                 orangeTotal = orangeTotal + oTreeTotal;
-                txtOrange.setText(orangeTotal + " oranges");
+                txtOrange.setText(orangeTotal + "");
 
                 SharedPreferences.Editor fruitEdit = fruitPrefs.edit();
                 fruitEdit.putInt("orangeTotal", orangeTotal);
@@ -258,32 +263,84 @@ public class GameScreen extends AppCompatActivity {
             }
         }, saveTimer);
 
-        //stock stuff
-//        final Handler stockHandler = new Handler();
-//        final int stockDelay = 1000; //milliseconds
-//
-//        stockHandler.postDelayed(new Runnable(){
-//
-//            public void run(){
-//                Random rand2 = new Random();
-//                int crash = rand2.nextInt(200) + 1;
-//
-//                Random rand = new Random();
-//                int decider = rand.nextInt(10) + 1;
-//
-//                if(crash == 1) {
-//                    stock = stock - (stock /2);
-//                }
-//                if( decider >= 5) {
-//                    stock = stock + 1;
-//                }
-//                else if(decider < 4) {
-//                    stock = stock -1;
-//                }
-//                txtStock.setText("Stock Price: " + stock );
-//                stockHandler.postDelayed(this, stockDelay);
-//            }
-//        }, stockDelay);
+        final Handler stockHandler = new Handler();
+        final int stockDelay = 1000; //milliseconds
+
+        stockHandler.postDelayed(new Runnable(){
+
+            public void run(){
+                Random rand2 = new Random();
+                int crash = rand2.nextInt(200) + 1;
+
+                Random rand = new Random();
+                int decider = rand.nextInt(10) + 1;
+
+
+                if(stock == 100){
+                    stock = (stock - 20);
+                }
+                if(crash == 1) {
+                    stock = stock - (stock /2);
+                }
+                if( decider >= 5) {
+                    stock = stock + 1;
+                }
+                else if(decider < 4) {
+                    if((stock - 1) >= 1 ){
+                        stock = stock -1;
+                    }
+                    else{
+                        stock = (stock + 1);
+                    }
+                }
+                txtStock.setText("$" + stock);
+                stockHandler.postDelayed(this, stockDelay);
+            }
+        }, stockDelay);
+
+        final Handler oStockHandler = new Handler();
+        final int oStockDelay = 1000; //milliseconds
+
+        stockHandler.postDelayed(new Runnable(){
+
+            public void run(){
+                Random rand2 = new Random();
+                int crash = rand2.nextInt(300) + 1;
+
+                Random rand = new Random();
+                int decider = rand.nextInt(10) + 1;
+
+                if(crash == 1) {
+                    oStock = oStock - (oStock /2);
+                }
+                if( (oStock - 50) <= stock ){
+                    oStock = oStock + 5;
+
+                }
+                if(oStock == 250){
+                    oStock = (oStock - 20);
+                }
+                if( decider >= 5) {
+                    oStock = oStock + 1;
+                }
+                else if(decider < 4) {
+                    if((oStock - 1) >= 1 ){
+                        oStock = oStock -1;
+                    }
+                    else{
+                        oStock = (oStock + 1);
+                    }
+                }
+                txtOStock.setText("$" + oStock);
+                oStockHandler.postDelayed(this, oStockDelay);
+            }
+        }, oStockDelay);
+
+        //saving everything
+
+
+
+
     }
 
 }

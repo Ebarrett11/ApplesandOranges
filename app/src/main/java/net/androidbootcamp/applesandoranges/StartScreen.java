@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +21,8 @@ public class StartScreen extends AppCompatActivity {
         setContentView(R.layout.activity_start_screen);
         final EditText txtPlayerName = findViewById(R.id.txtPlayer);
         Button btnGo = findViewById(R.id.btnGo);
+
+        //AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
         btnGo.setOnClickListener(new View.OnClickListener() {
             @Override
