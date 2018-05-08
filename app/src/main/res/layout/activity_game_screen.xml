@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/beach_theme"
     tools:context="net.androidbootcamp.applesandoranges.GameScreen">
 
     <TextView
@@ -20,59 +20,67 @@
 
     <TextView
         android:id="@+id/txtWallet"
-        android:layout_width="221dp"
+        android:layout_width="165dp"
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         android:background="@android:color/transparent"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/background_light"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.098"
         app:layout_constraintStart_toEndOf="@+id/txtPlayerName"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="8dp" />
 
     <TextView
         android:id="@+id/txtApple"
-        android:layout_width="297dp"
-        android:layout_height="65dp"
-        android:layout_marginBottom="592dp"
-        android:layout_marginEnd="28dp"
+        android:layout_width="107dp"
+        android:layout_height="59dp"
+        android:layout_marginBottom="600dp"
+        android:layout_marginEnd="156dp"
+        android:layout_marginTop="8dp"
         android:gravity="end"
-        android:textAlignment="textEnd"
-        android:textColor="@android:color/black"
+        android:textAlignment="viewStart"
+        android:textColor="@android:color/background_light"
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlCompat" />
 
     <TextView
         android:id="@+id/txtOrange"
-        android:layout_width="266dp"
+        android:layout_width="107dp"
         android:layout_height="59dp"
-        android:layout_marginEnd="328dp"
+        android:layout_marginEnd="416dp"
         android:layout_marginTop="8dp"
         android:gravity="end"
-        android:textAlignment="textEnd"
-        android:textColor="@android:color/black"
+        android:textAlignment="viewStart"
+        android:textColor="@android:color/background_light"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlCompat" />
 
     <TextView
         android:id="@+id/txtStock"
-        android:layout_width="232dp"
+        android:layout_width="187dp"
         android:layout_height="89dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:textColor="@android:color/black"
+        android:gravity="start"
+        android:textAlignment="viewStart"
+        android:textColor="@android:color/background_light"
+        android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.007"
+        app:layout_constraintHorizontal_bias="0.874"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.104" />
+        app:layout_constraintVertical_bias="0.1" />
 
     <ImageView
         android:id="@+id/imgTree1"
@@ -88,7 +96,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.857"
+        app:layout_constraintVertical_bias="0.762"
         app:srcCompat="@drawable/hole"
         android:layout_marginRight="1032dp"
         android:layout_marginLeft="8dp" />
@@ -104,10 +112,10 @@
         android:contentDescription="@string/imgHole"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.119"
+        app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.674"
+        app:layout_constraintVertical_bias="0.612"
         app:srcCompat="@drawable/hole" />
 
     <ImageView
@@ -121,16 +129,16 @@
         android:contentDescription="@string/imgHole"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.119"
+        app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.491"
+        app:layout_constraintVertical_bias="0.429"
         app:srcCompat="@drawable/hole" />
 
     <ImageView
         android:id="@+id/imgTree4"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -138,10 +146,10 @@
         android:contentDescription="@string/imgHole"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.119"
+        app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.308"
+        app:layout_constraintVertical_bias="0.246"
         app:srcCompat="@drawable/hole" />
 
     <ImageView
@@ -155,10 +163,10 @@
         android:contentDescription="@string/imgHole"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.378"
+        app:layout_constraintHorizontal_bias="0.376"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.857"
+        app:layout_constraintVertical_bias="0.795"
         app:srcCompat="@drawable/hole" />
 
     <ImageView
@@ -172,10 +180,10 @@
         android:contentDescription="@string/imgHole"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.378"
+        app:layout_constraintHorizontal_bias="0.376"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.674"
+        app:layout_constraintVertical_bias="0.612"
         app:srcCompat="@drawable/hole" />
 
     <ImageView
@@ -189,10 +197,10 @@
         android:contentDescription="@string/imgHole"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.378"
+        app:layout_constraintHorizontal_bias="0.376"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499"
+        app:layout_constraintVertical_bias="0.429"
         app:srcCompat="@drawable/hole" />
 
     <ImageView
@@ -206,10 +214,10 @@
         android:contentDescription="@string/imgHole"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.378"
+        app:layout_constraintHorizontal_bias="0.376"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.308"
+        app:layout_constraintVertical_bias="0.246"
         app:srcCompat="@drawable/hole" />
 
     <ImageView
@@ -226,7 +234,7 @@
         app:layout_constraintHorizontal_bias="0.632"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.332"
+        app:layout_constraintVertical_bias="0.268"
         app:srcCompat="@drawable/hole" />
 
     <ImageView
@@ -243,7 +251,7 @@
         app:layout_constraintHorizontal_bias="0.632"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499"
+        app:layout_constraintVertical_bias="0.451"
         app:srcCompat="@drawable/hole" />
 
     <ImageView
@@ -260,7 +268,7 @@
         app:layout_constraintHorizontal_bias="0.632"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.698"
+        app:layout_constraintVertical_bias="0.634"
         app:srcCompat="@drawable/hole" />
 
     <ImageView
@@ -277,7 +285,7 @@
         app:layout_constraintHorizontal_bias="0.632"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.882"
+        app:layout_constraintVertical_bias="0.817"
         app:srcCompat="@drawable/hole" />
 
     <ImageView
@@ -294,7 +302,7 @@
         app:layout_constraintHorizontal_bias="0.89"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.882"
+        app:layout_constraintVertical_bias="0.817"
         app:srcCompat="@drawable/hole" />
 
     <ImageView
@@ -308,10 +316,10 @@
         android:contentDescription="@string/imgHole"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.891"
+        app:layout_constraintHorizontal_bias="0.89"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.698"
+        app:layout_constraintVertical_bias="0.634"
         app:srcCompat="@drawable/hole" />
 
     <ImageView
@@ -328,7 +336,7 @@
         app:layout_constraintHorizontal_bias="0.89"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499"
+        app:layout_constraintVertical_bias="0.451"
         app:srcCompat="@drawable/hole" />
 
     <ImageView
@@ -342,27 +350,99 @@
         android:contentDescription="@string/imgHole"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.891"
+        app:layout_constraintHorizontal_bias="0.89"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.332"
+        app:layout_constraintVertical_bias="0.268"
         app:srcCompat="@drawable/hole" />
 
     <ImageButton
         android:id="@+id/btnShop"
-        android:layout_width="137dp"
-        android:layout_height="80dp"
+        android:layout_width="165sp"
+        android:layout_height="97sp"
+
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/imgShop"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.985"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/shop_three" />
+
+    <TextView
+        android:id="@+id/txtOStock"
+        android:layout_width="179dp"
+        android:layout_height="88dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:contentDescription="@string/imgShop"
+        android:gravity="start"
+        android:textAlignment="viewStart"
+        android:textColor="@android:color/background_light"
+        android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.992"
+        app:layout_constraintHorizontal_bias="0.624"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.111"
-        app:srcCompat="@drawable/shop" />
+        app:layout_constraintVertical_bias="0.1" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/imgApple"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.778"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/apple_s" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/imgOrange"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.563"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/orange_s" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="64dp"
+        android:layout_height="66dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/imgMoney"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.38"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/money" />
 
 </android.support.constraint.ConstraintLayout>
