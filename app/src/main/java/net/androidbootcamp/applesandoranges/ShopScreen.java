@@ -75,7 +75,7 @@ public class ShopScreen extends AppCompatActivity {
                 aTreeTotal = fruitPrefs.getInt("aTreeTotal", 0);
                 oTreeTotal = fruitPrefs.getInt("oTreeTotal", 0);
 
-                if(oTreeTotal < 9 && aTreeTotal < 9){
+                if((oTreeTotal + 1) < 9 && (aTreeTotal + 1) < 9){
                     if ((wallet - buyCost) < 0){
                         Toast.makeText(getBaseContext(), "You don't have enough money!", Toast.LENGTH_LONG).show();
                     }else {
@@ -99,10 +99,10 @@ public class ShopScreen extends AppCompatActivity {
 
                         startActivity(new Intent(ShopScreen.this, GameScreen.class));
                     }
-                }else if (aTreeTotal >= 9){
+                }else if ((aTreeTotal + 1) >= 9){
                     aTreeTotal = 8;
                     Toast.makeText(getBaseContext(), "Too many trees!", Toast.LENGTH_LONG).show();
-                }else if (oTreeTotal >= 9){
+                }else if ((oTreeTotal + 1) >= 9){
                     oTreeTotal = 8;
                     Toast.makeText(getBaseContext(), "Too many trees!", Toast.LENGTH_LONG).show();
                 }
