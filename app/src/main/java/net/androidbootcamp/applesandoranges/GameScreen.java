@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.Random;
 
 public class GameScreen extends AppCompatActivity {
@@ -29,6 +30,8 @@ public class GameScreen extends AppCompatActivity {
         setContentView(R.layout.activity_game_screen);
 
         //AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+
+        final DecimalFormat money = new DecimalFormat("$###,###,###");
 
         //trees
         final ImageView treeOne = findViewById(R.id.imgTree1);
@@ -64,16 +67,16 @@ public class GameScreen extends AppCompatActivity {
         aTreeTotal = fruitPrefs.getInt("aTreeTotal", 0);
         oTreeTotal = fruitPrefs.getInt("oTreeTotal", 0);
         wallet = fruitPrefs.getInt("wallet", 0);
-        // stock = fruitPrefs.getInt("stock", 0);
+        stock = fruitPrefs.getInt("stock", 0);
 
         if (aTreeTotal == 0) {
             wallet = 50;
         }
 
         //setting elements
-        txtWallet.setText(wallet + "");
-        txtApple.setText(appleTotal + " apples");
-        txtOrange.setText(orangeTotal + " oranges");
+        txtWallet.setText(money.format(wallet) + "");
+        txtApple.setText(money.format(appleTotal) + "");
+        txtOrange.setText(money.format(orangeTotal) + "");
 
         //setting tree images with store
         switch (aTreeTotal) {
@@ -222,7 +225,7 @@ public class GameScreen extends AppCompatActivity {
         appleHandler.postDelayed(new Runnable(){
             public void run(){
                 appleTotal = appleTotal + aTreeTotal;
-                txtApple.setText(appleTotal + "");
+                txtApple.setText(money.format(appleTotal) + "");
 
                 SharedPreferences.Editor fruitEdit = fruitPrefs.edit();
                 fruitEdit.putInt("appleTotal", appleTotal);
@@ -239,7 +242,7 @@ public class GameScreen extends AppCompatActivity {
         orangeHandler.postDelayed(new Runnable(){
             public void run(){
                 orangeTotal = orangeTotal + oTreeTotal;
-                txtOrange.setText(orangeTotal + "");
+                txtOrange.setText(money.format(orangeTotal) + "");
 
                 SharedPreferences.Editor fruitEdit = fruitPrefs.edit();
                 fruitEdit.putInt("orangeTotal", orangeTotal);
@@ -293,6 +296,12 @@ public class GameScreen extends AppCompatActivity {
                         stock = (stock + 1);
                     }
                 }
+
+                SharedPreferences.Editor fruitEdit = fruitPrefs.edit();
+                fruitEdit.putInt("stock", stock);
+                fruitEdit.putInt("oStock", oStock);
+                fruitEdit.commit();
+
                 txtStock.setText("$" + stock);
                 stockHandler.postDelayed(this, stockDelay);
             }

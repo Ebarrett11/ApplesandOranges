@@ -41,7 +41,7 @@ public class StartScreen extends AppCompatActivity {
                     Log.e("ERROR", e.toString());
                 }
 
-                 startActivity(new Intent(StartScreen.this, GameScreen.class));
+                startActivity(new Intent(StartScreen.this, GameScreen.class));
             }
         });
 

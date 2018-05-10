@@ -14,8 +14,10 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
+
 public class ShopScreen extends AppCompatActivity {
-    int aTreeTotal, oTreeTotal, buyCost, wallet, gain, stock, appleTotal, orangeTotal;
+    int aTreeTotal, oTreeTotal, buyCost, wallet, gain, stock, appleTotal, orangeTotal, oStock;
     String choice = "";
     int amount;
 
@@ -26,6 +28,8 @@ public class ShopScreen extends AppCompatActivity {
         setContentView(R.layout.activity_shop_screen);
 
         //AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+
+        final DecimalFormat money = new DecimalFormat("$###,###,###");
 
         ImageButton buyApple =  findViewById(R.id.btnBuyApple);
         ImageButton buyOrange = findViewById(R.id.btnBuyOrange);
@@ -41,7 +45,8 @@ public class ShopScreen extends AppCompatActivity {
         appleTotal = fruitPrefs.getInt("appleTotal", 0);
         orangeTotal = fruitPrefs.getInt("orangeTotal", 0);
         wallet = fruitPrefs.getInt("wallet", 0);
-        //stock = fruitPrefs.getInt("stock",0);
+        stock = fruitPrefs.getInt("stock",0);
+        oStock = fruitPrefs.getInt("oStock", 0);
 
         txtFruitStats.setText("apples: " + appleTotal + "\noranges: " + orangeTotal);
 
@@ -161,11 +166,11 @@ public class ShopScreen extends AppCompatActivity {
                 }else {
                     if (choice.equals("apple")) {
                         if ((appleTotal - amount) >= 0) {
-                            gain = amount * 2;
+                            gain = amount * stock;
                             appleTotal = appleTotal - amount;
                             wallet = wallet + gain;
 
-                            Toast.makeText(getBaseContext(), "+" + gain, Toast.LENGTH_LONG).show();
+                            Toast.makeText(getBaseContext(), "+" + money.format(gain), Toast.LENGTH_LONG).show();
 
                             SharedPreferences.Editor fruitEdit = fruitPrefs.edit();
                             fruitEdit.putInt("appleTotal", appleTotal);
@@ -179,11 +184,11 @@ public class ShopScreen extends AppCompatActivity {
                         }
                     } else if (choice.equals("orange")) {
                         if ((orangeTotal - amount) >= 0) {
-                            gain = amount * 2;
+                            gain = amount * oStock;
                             orangeTotal = orangeTotal - amount;
                             wallet = wallet + gain;
 
-                            Toast.makeText(getBaseContext(), "+" + gain, Toast.LENGTH_LONG).show();
+                            Toast.makeText(getBaseContext(), "+" + money.format(gain), Toast.LENGTH_LONG).show();
 
                             SharedPreferences.Editor fruitEdit = fruitPrefs.edit();
                             fruitEdit.putInt("appleTotal", appleTotal);
