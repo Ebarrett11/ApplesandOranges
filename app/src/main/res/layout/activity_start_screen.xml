@@ -9,39 +9,39 @@
 
     <TextView
         android:id="@+id/txtQuestion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="273dp"
+        android:layout_height="48dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="16dp"
         android:text="@string/txtPlayerName"
         android:textColor="@android:color/background_light"
-        android:textSize="60sp"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/txtPlayer"
-        android:layout_width="500sp"
-        android:layout_height="100sp"
+        android:layout_width="250sp"
+        android:layout_height="50sp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:singleLine="false"
         android:textColor="@android:color/background_light"
         android:textColorHint="@android:color/background_light"
-        android:textSize="50sp"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtQuestion" />
 
     <Button
         android:id="@+id/btnGo"
-        android:layout_width="235dp"
-        android:layout_height="159dp"
+        android:layout_width="70sp"
+        android:layout_height="42dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -49,7 +49,7 @@
         android:background="@android:color/holo_red_light"
         android:text="@string/btnName"
         android:textColor="@android:color/background_light"
-        android:textSize="50sp"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,8 +58,8 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="200sp"
-        android:layout_height="200sp"
+        android:layout_width="100sp"
+        android:layout_height="100sp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -75,8 +75,8 @@
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="200sp"
-        android:layout_height="200sp"
+        android:layout_width="100sp"
+        android:layout_height="100sp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -92,17 +92,18 @@
 
     <TextView
         android:id="@+id/txtFarm"
-        android:layout_width="500sp"
-        android:layout_height="100sp"
+        android:layout_width="250sp"
+        android:layout_height="50sp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:textColor="@android:color/background_light"
-        android:textSize="50sp"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.522" />
+        app:layout_constraintVertical_bias="0.585" />
 </android.support.constraint.ConstraintLayout>
