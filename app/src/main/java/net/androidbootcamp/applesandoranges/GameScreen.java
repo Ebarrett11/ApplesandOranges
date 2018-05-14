@@ -3,25 +3,37 @@ package net.androidbootcamp.applesandoranges;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class GameScreen extends AppCompatActivity {
-    int wallet, stock = 5, oStock = 50;
-    int appleTotal, orangeTotal, aTreeTotal, oTreeTotal;
+    int wallet, stock = 5, oStock = 50, appleYield, orangeYield;
+    int appleTotal, orangeTotal, aTreeTotal, oTreeTotal, playing;
+    MediaPlayer music;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -29,9 +41,32 @@ public class GameScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_screen);
 
+        music = new MediaPlayer();
+        music = MediaPlayer.create(this, R.raw.ukulele);
+        final Button btnSound = findViewById(R.id.btnSound);
+        playing = 0;
+
+        btnSound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch(playing) {
+                    case 0:
+                        music.start();
+                        playing = 1;
+                        btnSound.setText("Mute");
+                        break;
+                    case 1:
+                        music.pause();
+                        playing = 0;
+                        btnSound.setText("Play");
+                        break;
+                }
+            }
+        });
+
         //AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
-        final DecimalFormat money = new DecimalFormat("$###,###,###");
+        final DecimalFormat money = new DecimalFormat("###,###,###");
 
         //trees
         final ImageView treeOne = findViewById(R.id.imgTree1);
@@ -59,6 +94,7 @@ public class GameScreen extends AppCompatActivity {
         final TextView txtStock = findViewById(R.id.txtStock);
         final TextView txtOStock = findViewById(R.id.txtOStock);
         ImageButton btnShop = findViewById(R.id.btnShop);
+        Button btnUpdate = findViewById(R.id.btnUpdate);
 
         //get fruits from sharedPrefs
         final SharedPreferences fruitPrefs = PreferenceManager.getDefaultSharedPreferences(GameScreen.this);
@@ -68,10 +104,32 @@ public class GameScreen extends AppCompatActivity {
         oTreeTotal = fruitPrefs.getInt("oTreeTotal", 0);
         wallet = fruitPrefs.getInt("wallet", 0);
         stock = fruitPrefs.getInt("stock", 0);
+        oStock = fruitPrefs.getInt("oStock", 0);
+        appleYield = fruitPrefs.getInt("appleYield", 0);
+        orangeYield = fruitPrefs.getInt("orangeYield", 0);
+
+        if (appleYield == 0){
+            appleYield = 1;
+        }
+        if (orangeYield == 0){
+            orangeYield = 1;
+        }
 
         if (aTreeTotal == 0) {
             wallet = 50;
         }
+
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor fruitEdit = fruitPrefs.edit();
+                fruitEdit.putInt("appleYield", appleYield);
+                fruitEdit.putInt("orangeYield", orangeYield);
+                fruitEdit.putInt("wallet", wallet);
+                fruitEdit.commit();
+                startActivity(new Intent(GameScreen.this, Update.class));
+            }
+        });
 
         //setting elements
         txtWallet.setText(money.format(wallet) + "");
@@ -212,8 +270,51 @@ public class GameScreen extends AppCompatActivity {
                 fruitEdit.putInt("aTreeTotal", aTreeTotal);
                 fruitEdit.putInt("oTreeTotal", oTreeTotal);
                 fruitEdit.putInt("wallet", wallet);
+                fruitEdit.putInt("stock", stock);
+                fruitEdit.putInt("oStock", oStock);
                 fruitEdit.commit();
                 startActivity(new Intent(GameScreen.this, ShopScreen.class));
+            }
+        });
+
+        //crab!!
+
+        final ImageButton btnCrab = findViewById(R.id.crab);
+
+        final Handler crabA = new Handler();
+        final int crabATimer = 60000; //milliseconds
+
+        crabA.postDelayed(new Runnable(){
+            public void run() {
+
+                btnCrab.setImageResource(R.drawable.crab);
+                btnCrab.startAnimation(AnimationUtils.loadAnimation(GameScreen.this, R.anim.crab_move));
+
+                crabA.postDelayed(this, crabATimer);
+            }
+        }, crabATimer);
+
+        btnCrab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Random rCrab = new Random();
+                int iCrab = rCrab.nextInt(50) + 1;
+
+                if (iCrab >= 4){
+                    appleTotal = appleTotal + 100;
+                    Toast.makeText(getBaseContext(), "You got 100 apples!", Toast.LENGTH_LONG).show();
+                } else if (iCrab == 2 || iCrab == 3){
+                    if (wallet >= 300000){
+                        wallet = wallet - 300000;
+                        Toast.makeText(getBaseContext(), "You lost $300,000!", Toast.LENGTH_LONG).show();
+                    } else{
+                        wallet = wallet / 2;
+                        Toast.makeText(getBaseContext(), "You lost half your wallet!", Toast.LENGTH_LONG).show();
+                    }
+                } else if (iCrab == 1){
+                    orangeTotal = orangeTotal + 1000;
+                    Toast.makeText(getBaseContext(), "You got 1,000 oranges!", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -224,8 +325,8 @@ public class GameScreen extends AppCompatActivity {
 
         appleHandler.postDelayed(new Runnable(){
             public void run(){
-                appleTotal = appleTotal + aTreeTotal;
-                txtApple.setText(money.format(appleTotal) + "");
+                appleTotal = appleTotal + (aTreeTotal * appleYield);
+                txtApple.setText(appleTotal + "");
 
                 SharedPreferences.Editor fruitEdit = fruitPrefs.edit();
                 fruitEdit.putInt("appleTotal", appleTotal);
@@ -241,8 +342,8 @@ public class GameScreen extends AppCompatActivity {
 
         orangeHandler.postDelayed(new Runnable(){
             public void run(){
-                orangeTotal = orangeTotal + oTreeTotal;
-                txtOrange.setText(money.format(orangeTotal) + "");
+                orangeTotal = orangeTotal + (oTreeTotal * orangeYield);
+                txtOrange.setText(orangeTotal + "");
 
                 SharedPreferences.Editor fruitEdit = fruitPrefs.edit();
                 fruitEdit.putInt("orangeTotal", orangeTotal);
@@ -285,10 +386,10 @@ public class GameScreen extends AppCompatActivity {
                 if(crash == 1) {
                     stock = stock - (stock /2);
                 }
-                if( decider >= 5) {
+                if( decider >= 6) {
                     stock = stock + 1;
                 }
-                else if(decider < 4) {
+                else if(decider <= 5) {
                     if((stock - 1) >= 1 ){
                         stock = stock -1;
                     }
@@ -299,10 +400,9 @@ public class GameScreen extends AppCompatActivity {
 
                 SharedPreferences.Editor fruitEdit = fruitPrefs.edit();
                 fruitEdit.putInt("stock", stock);
-                fruitEdit.putInt("oStock", oStock);
                 fruitEdit.commit();
 
-                txtStock.setText("$" + stock);
+                txtStock.setText("Apple Value: $" + stock);
                 stockHandler.postDelayed(this, stockDelay);
             }
         }, stockDelay);
@@ -329,10 +429,10 @@ public class GameScreen extends AppCompatActivity {
                 if(oStock == 250){
                     oStock = (oStock - 20);
                 }
-                if( decider >= 5) {
+                if( decider >= 6) {
                     oStock = oStock + 1;
                 }
-                else if(decider < 4) {
+                else if(decider <= 5) {
                     if((oStock - 1) >= 1 ){
                         oStock = oStock -1;
                     }
@@ -340,7 +440,12 @@ public class GameScreen extends AppCompatActivity {
                         oStock = (oStock + 1);
                     }
                 }
-                txtOStock.setText("$" + oStock);
+
+                SharedPreferences.Editor fruitEdit = fruitPrefs.edit();
+                fruitEdit.putInt("oStock", oStock);
+                fruitEdit.commit();
+
+                txtOStock.setText("Orange Value: $" + oStock);
                 oStockHandler.postDelayed(this, oStockDelay);
             }
         }, oStockDelay);

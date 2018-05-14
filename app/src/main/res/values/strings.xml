@@ -25,4 +25,9 @@
     <string name="btnSell">Sell</string>
     <string name="btnBuy">Buy</string>
     <string name="btnGame">Back to Game</string>
+    <string name="btnOn">Play</string>
+    <string name="btnUpApple">Upgrade!</string>
+    <string name="btnUpOrange">Upgrade!</string>
+    <string name="updates">Click to upgrade the number of apples or oranges you earn!</string>
+    <string name="todo">TODO</string>
 </resources>

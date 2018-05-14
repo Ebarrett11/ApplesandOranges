@@ -1,9 +1,8 @@
 package net.androidbootcamp.applesandoranges;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,8 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.os.Handler;
-
-import org.w3c.dom.Text;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -28,13 +25,11 @@ public class StartScreen extends AppCompatActivity {
         Button btnGo = (Button) findViewById(R.id.btnGo);
         final TextView txtFarm = findViewById(R.id.txtFarm);
 
-
-
-
         final Handler farmHandler = new Handler();
         final int farmDelay = 10; //milliseconds
 
         farmHandler.postDelayed(new Runnable(){
+            @SuppressLint("SetTextI18n")
             public void run(){
 
                 String name = txtPlayerName.getText().toString();
