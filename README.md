@@ -1,3 +1,5 @@
+![Splash Screen](https://github.com/Ebarrett11/ApplesandOranges/blob/master/app/src/main/res/drawable/splash.png?raw=true)
+
 # ApplesandOranges
 Project created for app design course<br />
 Application functions nearly as intended; there are a few bugs reported by users that need resolving <br />
